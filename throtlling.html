@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Throtlling</title>
+  </head>
+  <body>
+    <button onclick="betterFunction()">Click Me</button>
+    <script>
+      let count = 0;
+      const getData = () => {
+        console.log("API call ", count++);
+      };
+
+      const throttle = (fn, limit) => {
+        let timer;
+        let flag = true;
+        return function () {
+          let context = this,
+            args = arguments;
+          if (flag) {
+            getData.apply(context, arguments);
+            flag = false;
+          }
+          clearTimeout(timer);
+          time = setTimeout(() => {
+            flag = true;
+          }, limit);
+        };
+      };
+
+      const betterFunction = throttle(getData, 3000); // calling getData exact after 300ms
+    </script>
+  </body>
+</html>

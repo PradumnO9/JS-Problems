@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debouncing</title>
+  </head>
+  <body>
+    <!-- Debouncing in search bar -->
+    <div>
+      <form>
+        <input type="text" onkeyup="betterFunction()" placeholder="search..." />
+      </form>
+    </div>
+    <script>
+      let counter = 0;
+      const getData = () => {
+        console.log("API call ", counter++);
+      };
+
+      const debounce = (fn, delay) => {
+        let timer;
+        return function () {
+          let context = this,
+            args = arguments;
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            getData.apply(context, arguments);
+          }, delay);
+        };
+      };
+
+      const betterFunction = debounce(getData, 300); // between two key press if the delay is less then 300ms don't make an API call
+    </script>
+    <!-- other eg. scrolling, button click etc -->
+  </body>
+</html>
+
+<!-- we can also write like this -->
+<!-- const debounce = (fn, delay) => {
+  let timer;
+  return function () {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn();
+    }, delay);
+  };
+}; -->

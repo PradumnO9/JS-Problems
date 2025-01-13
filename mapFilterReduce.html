@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map, Filter & Reduce</title>
+  </head>
+  <body>
+    <script>
+      let arr1 = [2, 5, 3, 7, 8, 1];
+
+      // map()
+      function double(a) {
+        return a * 2;
+      }
+
+      const output1 = arr1.map(double);
+      const output2 = arr1.map((x) => {
+        return x.toString(2);
+      });
+      console.log("Multiple of 2: ", output1);
+      console.log("Binary value: ", output2);
+
+      // filter()
+      const output3 = arr1.filter((x) => x % 2); // filtering all the odd values from the arr2
+      console.log("Odd values: ", output3);
+
+      // reduce()
+      // sum of all element of arr1
+      const sum = arr1.reduce((curr, acc) => {
+        // here acc act as sum = 0, and cuur is the current index value
+        acc = acc + curr;
+        return acc;
+      }, 0); // 2nd argument is the init value of acc
+      console.log("sum :", sum);
+
+      // max element of the arr1
+      const max = arr1.reduce((curr, max) => {
+        if (curr > max) {
+          max = curr;
+        }
+        return max;
+      }, 0);
+      console.log("Max element: ", max);
+
+      ///////////////////////////////////////////////////////////////////
+      const users = [
+        { firstName: "Pradumn", lastName: "Kumar", age: 25 },
+        { firstName: "Sunami", lastName: "Kabir", age: 23 },
+        { firstName: "Nandita", lastName: "Dwivedi", age: 25 },
+        { firstName: "Priya", lastName: "Verma", age: 27 },
+      ];
+
+      const fullName = users.map((x) => {
+        return x.firstName + " " + x.lastName;
+      });
+      console.log("Full Name: ", fullName);
+
+    //   const out = users.reduce((curr, acc) => {
+    //     if (acc[curr.age]) {
+    //       acc[curr.age] = acc[curr.age] + 1;
+    //     } else {
+    //       acc[curr.age] = 1;
+    //     }
+    //     return acc;
+    //   }, {});
+
+    //   console.log(out);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise Then&Catch</title>
+  </head>
+  <body>
+    <script>
+      let USER_API = "https://api.github.com/users/PradumnO9";
+
+      // Old way using then and catch
+      const data = fetch(USER_API); // gives a promise object
+      data
+        .then((res) => {
+          console.log(res);
+          let user = res.json();
+          user
+            .then((d) => {
+              console.log(d);
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      // using async await
+
+      const userData = async () => {
+        try {
+          const data = await fetch(USER_API);
+          const json = await data.json();
+          console.log(data);
+          console.log(json);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      userData();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>callApplyBind</title>
+</head>
+<body>
+    <script>
+        let printFullName = function(city, state) {
+            console.log(this.firstName + " " + this.lastName + " from " + city + ", " + state)
+        }
+
+        let name1 = {
+            firstName: "Pradumn",
+            lastName: "Kumar"
+        }
+        let name2 = {
+            firstName: "Nandita",
+            lastName: "Dwivedi"
+        }
+        let name3 = {
+            firstName: "Sunami",
+            lastName: "Kabir"
+        }
+
+        // call() method
+
+        printFullName.call(name1, "Mahoba", "Uttar Predesh");
+
+        // apply() method
+
+        printFullName.apply(name2, ["Noida", "Delhi"]);
+
+        // bind() method
+
+        let fullName = printFullName.bind(name3, "Indore", "Madhya Pradesh");
+        console.log(fullName); // bind creates a copy of the function and then we can call
+        fullName();
+
+    </script>
+</body>
+</html>
